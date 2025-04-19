@@ -170,7 +170,7 @@
 
 <p>La base de datos está modelada para mantener la integridad referencial, optimizar consultas y facilitar futuras expansiones.</p>
 
-<p><em>(Aquí debe insertarse la imagen del diagrama ER generado)</em></p>
+<p><em>(Aquí debe insertarse la imagen del diagrama ER)</em></p>
 
 <hr>
 
