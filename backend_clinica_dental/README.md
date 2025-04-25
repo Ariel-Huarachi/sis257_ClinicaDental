@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <h1>Clínica Dental - Sistema de Gestión Integral</h1>
 
 <p>La Clínica Dental es un sistema web diseñado para digitalizar y optimizar los procesos de atención y administración de un centro odontológico moderno. Esta solución permite gestionar pacientes, profesionales, tratamientos, horarios, citas y pagos, mejorando la experiencia de usuarios y personal médico mediante una plataforma ágil, segura y escalable.</p>
