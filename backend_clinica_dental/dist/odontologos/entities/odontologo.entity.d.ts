@@ -1,3 +1,6 @@
+import { Cita } from 'src/citas/entities/cita.entity';
+import { Horario } from 'src/horarios/entities/horario.entity';
+import { OdontologosServicio } from 'src/odontologos_servicios/entities/odontologos_servicio.entity';
 import { Rol } from 'src/roles/entities/rol.entity';
 export declare class Odontologo {
     id: number;
@@ -13,4 +16,7 @@ export declare class Odontologo {
     fechaModificacion: Date;
     fechaEliminacion: Date;
     rol: Rol;
+    horarios: Horario[];
+    citas: Cita[];
+    odontologosServicios: OdontologosServicio[];
 }

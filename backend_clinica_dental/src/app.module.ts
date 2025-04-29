@@ -6,6 +6,13 @@ import { ConfigModule } from '@nestjs/config';
 import { RolesModule } from './roles/roles.module';
 import { OdontologosModule } from './odontologos/odontologos.module';
 import { PacientesModule } from './pacientes/pacientes.module';
+import { HorariosModule } from './horarios/horarios.module';
+import { CitasModule } from './citas/citas.module';
+import { HistorialClinicoModule } from './historial-clinico/historial-clinico.module';
+import { PagosModule } from './pagos/pagos.module';
+import { ServiciosModule } from './servicios/servicios.module';
+import { OdontologosServiciosModule } from './odontologos_servicios/odontologos_servicios.module';
+import { CitasServiciosModule } from './citas_servicios/citas_servicios.module';
 
 @Module({
   imports: [
@@ -24,6 +31,13 @@ import { PacientesModule } from './pacientes/pacientes.module';
     RolesModule,
     OdontologosModule,
     PacientesModule,
+    HorariosModule,
+    CitasModule,
+    HistorialClinicoModule,
+    PagosModule,
+    ServiciosModule,
+    OdontologosServiciosModule,
+    CitasServiciosModule,
     
 
   ],

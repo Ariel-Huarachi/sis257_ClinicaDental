@@ -4,6 +4,8 @@
 // direccion VARCHAR(255), rol_id INT, 
 // fecha_creacion DATETIME, fecha_modificacion DATETIME, fecha_eliminacion DATETIME)
 
+import { Cita } from 'src/citas/entities/cita.entity';
+import { HistorialClinico } from 'src/historial-clinico/entities/historial-clinico.entity';
 import { Rol } from 'src/roles/entities/rol.entity';
 import{
     Column,
@@ -12,6 +14,7 @@ import{
     Entity,
     JoinColumn,
     ManyToOne,
+    OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 }from 'typeorm';
@@ -57,6 +60,18 @@ export class Paciente {
     @ManyToOne(() => Rol, rol => rol.pacientes)
     @JoinColumn({ name: 'rol_id', referencedColumnName: 'id' })
     rol: Rol;
+
+    @OneToMany(() => Cita, cita => cita.paciente)
+    citas: Cita[];
+
+    @OneToMany(() => HistorialClinico, historialClinico => historialClinico.paciente)
+    historialClinico: HistorialClinico[];
+
+    
+    
+
+
+
 
 
 

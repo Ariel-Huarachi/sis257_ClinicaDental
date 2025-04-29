@@ -15,6 +15,13 @@ const config_1 = require("@nestjs/config");
 const roles_module_1 = require("./roles/roles.module");
 const odontologos_module_1 = require("./odontologos/odontologos.module");
 const pacientes_module_1 = require("./pacientes/pacientes.module");
+const horarios_module_1 = require("./horarios/horarios.module");
+const citas_module_1 = require("./citas/citas.module");
+const historial_clinico_module_1 = require("./historial-clinico/historial-clinico.module");
+const pagos_module_1 = require("./pagos/pagos.module");
+const servicios_module_1 = require("./servicios/servicios.module");
+const odontologos_servicios_module_1 = require("./odontologos_servicios/odontologos_servicios.module");
+const citas_servicios_module_1 = require("./citas_servicios/citas_servicios.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -36,6 +43,13 @@ exports.AppModule = AppModule = __decorate([
             roles_module_1.RolesModule,
             odontologos_module_1.OdontologosModule,
             pacientes_module_1.PacientesModule,
+            horarios_module_1.HorariosModule,
+            citas_module_1.CitasModule,
+            historial_clinico_module_1.HistorialClinicoModule,
+            pagos_module_1.PagosModule,
+            servicios_module_1.ServiciosModule,
+            odontologos_servicios_module_1.OdontologosServiciosModule,
+            citas_servicios_module_1.CitasServiciosModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

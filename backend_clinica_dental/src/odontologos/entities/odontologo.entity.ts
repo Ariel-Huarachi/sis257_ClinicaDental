@@ -7,6 +7,9 @@
 // rol_id INT, fecha_creacion DATETIME, 
 // fecha_modificacion DATETIME, 
 // fecha_eliminacion DATETIME)
+import { Cita } from 'src/citas/entities/cita.entity';
+import { Horario } from 'src/horarios/entities/horario.entity';
+import { OdontologosServicio } from 'src/odontologos_servicios/entities/odontologos_servicio.entity';
 import { Rol } from 'src/roles/entities/rol.entity';
 import{
     Column,
@@ -15,6 +18,7 @@ import{
     Entity,
     JoinColumn,
     ManyToOne,
+    OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 }from 'typeorm';
@@ -60,6 +64,18 @@ export class Odontologo {
     @ManyToOne(() => Rol, rol => rol.odontologos)
     @JoinColumn({ name: 'rol_id', referencedColumnName: 'id' })
     rol: Rol;
+
+    @OneToMany(() => Horario, horario => horario.odontologo)
+    horarios: Horario[];
+
+    @OneToMany(() => Cita, cita => cita.odontologo)
+    citas: Cita[];
+    
+    @OneToMany(() => OdontologosServicio, odontologosServicio => odontologosServicio.odontologo)
+    odontologosServicios: OdontologosServicio[];
+
+   
+
 }
 
 

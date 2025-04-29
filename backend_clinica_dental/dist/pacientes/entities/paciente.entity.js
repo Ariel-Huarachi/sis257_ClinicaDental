@@ -10,6 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Paciente = void 0;
+const cita_entity_1 = require("../../citas/entities/cita.entity");
+const historial_clinico_entity_1 = require("../../historial-clinico/entities/historial-clinico.entity");
 const rol_entity_1 = require("../../roles/entities/rol.entity");
 const typeorm_1 = require("typeorm");
 let Paciente = class Paciente {
@@ -26,6 +28,8 @@ let Paciente = class Paciente {
     fechaModificacion;
     fechaEliminacion;
     rol;
+    citas;
+    historialClinico;
 };
 exports.Paciente = Paciente;
 __decorate([
@@ -81,6 +85,14 @@ __decorate([
     (0, typeorm_1.JoinColumn)({ name: 'rol_id', referencedColumnName: 'id' }),
     __metadata("design:type", rol_entity_1.Rol)
 ], Paciente.prototype, "rol", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => cita_entity_1.Cita, cita => cita.paciente),
+    __metadata("design:type", Array)
+], Paciente.prototype, "citas", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => historial_clinico_entity_1.HistorialClinico, historialClinico => historialClinico.paciente),
+    __metadata("design:type", Array)
+], Paciente.prototype, "historialClinico", void 0);
 exports.Paciente = Paciente = __decorate([
     (0, typeorm_1.Entity)('pacientes')
 ], Paciente);

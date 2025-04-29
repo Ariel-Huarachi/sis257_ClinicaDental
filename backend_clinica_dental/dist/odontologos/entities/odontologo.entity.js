@@ -10,6 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Odontologo = void 0;
+const cita_entity_1 = require("../../citas/entities/cita.entity");
+const horario_entity_1 = require("../../horarios/entities/horario.entity");
+const odontologos_servicio_entity_1 = require("../../odontologos_servicios/entities/odontologos_servicio.entity");
 const rol_entity_1 = require("../../roles/entities/rol.entity");
 const typeorm_1 = require("typeorm");
 let Odontologo = class Odontologo {
@@ -26,6 +29,9 @@ let Odontologo = class Odontologo {
     fechaModificacion;
     fechaEliminacion;
     rol;
+    horarios;
+    citas;
+    odontologosServicios;
 };
 exports.Odontologo = Odontologo;
 __decorate([
@@ -81,6 +87,18 @@ __decorate([
     (0, typeorm_1.JoinColumn)({ name: 'rol_id', referencedColumnName: 'id' }),
     __metadata("design:type", rol_entity_1.Rol)
 ], Odontologo.prototype, "rol", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => horario_entity_1.Horario, horario => horario.odontologo),
+    __metadata("design:type", Array)
+], Odontologo.prototype, "horarios", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => cita_entity_1.Cita, cita => cita.odontologo),
+    __metadata("design:type", Array)
+], Odontologo.prototype, "citas", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => odontologos_servicio_entity_1.OdontologosServicio, odontologosServicio => odontologosServicio.odontologo),
+    __metadata("design:type", Array)
+], Odontologo.prototype, "odontologosServicios", void 0);
 exports.Odontologo = Odontologo = __decorate([
     (0, typeorm_1.Entity)('odontologos')
 ], Odontologo);

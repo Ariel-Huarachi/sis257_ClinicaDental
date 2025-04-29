@@ -1,3 +1,5 @@
+import { Cita } from 'src/citas/entities/cita.entity';
+import { HistorialClinico } from 'src/historial-clinico/entities/historial-clinico.entity';
 import { Rol } from 'src/roles/entities/rol.entity';
 export declare class Paciente {
     id: number;
@@ -13,4 +15,6 @@ export declare class Paciente {
     fechaModificacion: Date;
     fechaEliminacion: Date;
     rol: Rol;
+    citas: Cita[];
+    historialClinico: HistorialClinico[];
 }
