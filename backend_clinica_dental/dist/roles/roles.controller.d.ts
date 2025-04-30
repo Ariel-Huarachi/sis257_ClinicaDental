@@ -4,9 +4,9 @@ import { UpdateRoleDto } from './dto/update-rol.dto';
 export declare class RolesController {
     private readonly rolesService;
     constructor(rolesService: RolesService);
-    create(createRoleDto: CreateRoleDto): string;
-    findAll(): string;
-    findOne(id: string): string;
-    update(id: string, updateRoleDto: UpdateRoleDto): string;
-    remove(id: string): string;
+    create(createRoleDto: CreateRoleDto): Promise<import("./entities/rol.entity").Rol>;
+    findAll(): Promise<import("./entities/rol.entity").Rol[]>;
+    findOne(id: string): Promise<import("./entities/rol.entity").Rol>;
+    update(id: string, updateRoleDto: UpdateRoleDto): Promise<import("./entities/rol.entity").Rol>;
+    remove(id: string): Promise<import("./entities/rol.entity").Rol>;
 }
