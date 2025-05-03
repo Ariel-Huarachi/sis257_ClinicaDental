@@ -15,12 +15,14 @@ const horario_entity_1 = require("../../horarios/entities/horario.entity");
 const odontologos_servicio_entity_1 = require("../../odontologos_servicios/entities/odontologos_servicio.entity");
 const rol_entity_1 = require("../../roles/entities/rol.entity");
 const typeorm_1 = require("typeorm");
+const bcrypt = require("bcrypt");
 let Odontologo = class Odontologo {
     id;
     nombre;
     primer_apellido;
     segundo_apellido;
     email;
+    password;
     telefono;
     direccion;
     especialidad;
@@ -28,6 +30,15 @@ let Odontologo = class Odontologo {
     fechaCreacion;
     fechaModificacion;
     fechaEliminacion;
+    async hashPassword() {
+        if (this.password) {
+            const salt = await bcrypt.genSalt();
+            this.password = await bcrypt.hash(this.password, salt);
+        }
+    }
+    async validatePassword(plainPassword) {
+        return bcrypt.compare(plainPassword, this.password);
+    }
     rol;
     horarios;
     citas;
@@ -43,17 +54,21 @@ __decorate([
     __metadata("design:type", String)
 ], Odontologo.prototype, "nombre", void 0);
 __decorate([
-    (0, typeorm_1.Column)('varchar', { length: 50, }),
+    (0, typeorm_1.Column)('varchar', { length: 50, name: 'primer_apellido' }),
     __metadata("design:type", String)
 ], Odontologo.prototype, "primer_apellido", void 0);
 __decorate([
-    (0, typeorm_1.Column)('varchar', { length: 50, }),
+    (0, typeorm_1.Column)('varchar', { length: 50, name: 'segundo_apellido' }),
     __metadata("design:type", String)
 ], Odontologo.prototype, "segundo_apellido", void 0);
 __decorate([
     (0, typeorm_1.Column)('varchar', { length: 100, }),
     __metadata("design:type", String)
 ], Odontologo.prototype, "email", void 0);
+__decorate([
+    (0, typeorm_1.Column)('varchar', { length: 250 }),
+    __metadata("design:type", String)
+], Odontologo.prototype, "password", void 0);
 __decorate([
     (0, typeorm_1.Column)('varchar', { length: 20, }),
     __metadata("design:type", String)
@@ -67,7 +82,7 @@ __decorate([
     __metadata("design:type", String)
 ], Odontologo.prototype, "especialidad", void 0);
 __decorate([
-    (0, typeorm_1.Column)('integer', { name: 'rol_id' }),
+    (0, typeorm_1.Column)('integer', { name: 'rol_id', default: 2 }),
     __metadata("design:type", Number)
 ], Odontologo.prototype, "idRol", void 0);
 __decorate([
@@ -82,6 +97,13 @@ __decorate([
     (0, typeorm_1.DeleteDateColumn)({ name: 'fecha_eliminacion' }),
     __metadata("design:type", Date)
 ], Odontologo.prototype, "fechaEliminacion", void 0);
+__decorate([
+    (0, typeorm_1.BeforeInsert)(),
+    (0, typeorm_1.BeforeUpdate)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], Odontologo.prototype, "hashPassword", null);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => rol_entity_1.Rol, rol => rol.odontologos),
     (0, typeorm_1.JoinColumn)({ name: 'rol_id', referencedColumnName: 'id' }),

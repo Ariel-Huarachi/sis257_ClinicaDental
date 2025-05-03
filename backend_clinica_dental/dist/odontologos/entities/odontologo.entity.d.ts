@@ -8,6 +8,7 @@ export declare class Odontologo {
     primer_apellido: string;
     segundo_apellido: string;
     email: string;
+    password: string;
     telefono: string;
     direccion: string;
     especialidad: string;
@@ -15,6 +16,8 @@ export declare class Odontologo {
     fechaCreacion: Date;
     fechaModificacion: Date;
     fechaEliminacion: Date;
+    hashPassword(): Promise<void>;
+    validatePassword(plainPassword: string): Promise<boolean>;
     rol: Rol;
     horarios: Horario[];
     citas: Cita[];
