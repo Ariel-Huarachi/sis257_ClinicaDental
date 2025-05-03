@@ -23,13 +23,13 @@ export class PacientesService {
       throw new ConflictException('El email ya está en uso');
     }
     const paciente = new Paciente();
-    paciente.nombre = createPacienteDto.nombre;
-    paciente.primer_apellido = createPacienteDto.primer_apellido;
-    paciente.segundo_apellido = createPacienteDto.segundo_apellido;
-    paciente.email = createPacienteDto.email;
-    paciente.password = createPacienteDto.password;
-    paciente.telefono = createPacienteDto.telefono;
-    paciente.direccion = createPacienteDto.direccion;
+    paciente.nombre = createPacienteDto.nombre.trim();
+    paciente.primer_apellido = createPacienteDto.primer_apellido.trim();
+    paciente.segundo_apellido = createPacienteDto.segundo_apellido.trim();
+    paciente.email = createPacienteDto.email.trim();
+    paciente.password = createPacienteDto.password.trim();
+    paciente.telefono = createPacienteDto.telefono.trim();
+    paciente.direccion = createPacienteDto.direccion.trim();
 
     return this.pacienteRepository.save(paciente);
   }
