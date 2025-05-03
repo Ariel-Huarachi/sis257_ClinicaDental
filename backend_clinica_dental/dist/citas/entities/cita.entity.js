@@ -18,7 +18,7 @@ const typeorm_1 = require("typeorm");
 let Cita = class Cita {
     id;
     estado;
-    idCliente;
+    idPaciente;
     idOdontologo;
     fechaHoraInicio;
     fechaHoraFin;
@@ -40,9 +40,9 @@ __decorate([
     __metadata("design:type", String)
 ], Cita.prototype, "estado", void 0);
 __decorate([
-    (0, typeorm_1.Column)('integer', { name: 'cliente_id' }),
+    (0, typeorm_1.Column)('integer', { name: 'paciente_id' }),
     __metadata("design:type", Number)
-], Cita.prototype, "idCliente", void 0);
+], Cita.prototype, "idPaciente", void 0);
 __decorate([
     (0, typeorm_1.Column)('integer', { name: 'odontologo_id' }),
     __metadata("design:type", Number)
@@ -69,7 +69,7 @@ __decorate([
 ], Cita.prototype, "fechaEliminacion", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => paciente_entity_1.Paciente, paciente => paciente.citas),
-    (0, typeorm_1.JoinColumn)({ name: 'cliente_id', referencedColumnName: 'id' }),
+    (0, typeorm_1.JoinColumn)({ name: 'paciente_id', referencedColumnName: 'id' }),
     __metadata("design:type", paciente_entity_1.Paciente)
 ], Cita.prototype, "paciente", void 0);
 __decorate([

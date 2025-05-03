@@ -24,8 +24,8 @@ export class Cita {
     @Column('enum', { enum: ['Programada', 'Completada', 'Cancelada'] })
     estado: string;
 
-    @Column('integer', { name: 'cliente_id' })
-    idCliente: number;
+    @Column('integer', { name: 'paciente_id' })
+    idPaciente: number;
 
     @Column('integer', { name: 'odontologo_id' })
     idOdontologo: number;
@@ -46,7 +46,7 @@ export class Cita {
     fechaEliminacion: Date;
 
     @ManyToOne(() => Paciente, paciente => paciente.citas)
-    @JoinColumn({ name: 'cliente_id', referencedColumnName: 'id' })
+    @JoinColumn({ name: 'paciente_id', referencedColumnName: 'id' })
     paciente: Paciente;
 
     @ManyToOne(() => Odontologo, odontologo => odontologo.citas)

@@ -5,7 +5,7 @@ import { Pago } from 'src/pagos/entities/pago.entity';
 export declare class Cita {
     id: number;
     estado: string;
-    idCliente: number;
+    idPaciente: number;
     idOdontologo: number;
     fechaHoraInicio: Date;
     fechaHoraFin: Date;

@@ -12,12 +12,14 @@ const citas_service_1 = require("./citas.service");
 const citas_controller_1 = require("./citas.controller");
 const typeorm_1 = require("@nestjs/typeorm");
 const cita_entity_1 = require("./entities/cita.entity");
+const paciente_entity_1 = require("../pacientes/entities/paciente.entity");
+const odontologo_entity_1 = require("../odontologos/entities/odontologo.entity");
 let CitasModule = class CitasModule {
 };
 exports.CitasModule = CitasModule;
 exports.CitasModule = CitasModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([cita_entity_1.Cita])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([cita_entity_1.Cita, paciente_entity_1.Paciente, odontologo_entity_1.Odontologo])],
         controllers: [citas_controller_1.CitasController],
         providers: [citas_service_1.CitasService],
     })
