@@ -14,6 +14,7 @@ const cita_entity_1 = require("../../citas/entities/cita.entity");
 const historial_clinico_entity_1 = require("../../historial-clinico/entities/historial-clinico.entity");
 const rol_entity_1 = require("../../roles/entities/rol.entity");
 const typeorm_1 = require("typeorm");
+const bcrypt = require("bcrypt");
 let Paciente = class Paciente {
     id;
     nombre;
@@ -27,6 +28,15 @@ let Paciente = class Paciente {
     fechaCreacion;
     fechaModificacion;
     fechaEliminacion;
+    async hashPassword() {
+        if (this.password) {
+            const salt = await bcrypt.genSalt();
+            this.password = await bcrypt.hash(this.password, salt);
+        }
+    }
+    async validatePassword(plainPassword) {
+        return bcrypt.compare(plainPassword, this.password);
+    }
     rol;
     citas;
     historialClinico;
@@ -41,11 +51,11 @@ __decorate([
     __metadata("design:type", String)
 ], Paciente.prototype, "nombre", void 0);
 __decorate([
-    (0, typeorm_1.Column)('varchar', { length: 50, }),
+    (0, typeorm_1.Column)('varchar', { length: 50, name: 'primer_apellido' }),
     __metadata("design:type", String)
 ], Paciente.prototype, "primer_apellido", void 0);
 __decorate([
-    (0, typeorm_1.Column)('varchar', { length: 50, }),
+    (0, typeorm_1.Column)('varchar', { length: 50, name: 'segundo_apellido' }),
     __metadata("design:type", String)
 ], Paciente.prototype, "segundo_apellido", void 0);
 __decorate([
@@ -65,7 +75,7 @@ __decorate([
     __metadata("design:type", String)
 ], Paciente.prototype, "direccion", void 0);
 __decorate([
-    (0, typeorm_1.Column)('integer', { name: 'rol_id' }),
+    (0, typeorm_1.Column)('integer', { name: 'rol_id', default: 1 }),
     __metadata("design:type", Number)
 ], Paciente.prototype, "idRol", void 0);
 __decorate([
@@ -80,6 +90,13 @@ __decorate([
     (0, typeorm_1.DeleteDateColumn)({ name: 'fecha_eliminacion' }),
     __metadata("design:type", Date)
 ], Paciente.prototype, "fechaEliminacion", void 0);
+__decorate([
+    (0, typeorm_1.BeforeInsert)(),
+    (0, typeorm_1.BeforeUpdate)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], Paciente.prototype, "hashPassword", null);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => rol_entity_1.Rol, rol => rol.pacientes),
     (0, typeorm_1.JoinColumn)({ name: 'rol_id', referencedColumnName: 'id' }),

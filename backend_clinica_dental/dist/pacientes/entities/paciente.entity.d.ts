@@ -14,6 +14,8 @@ export declare class Paciente {
     fechaCreacion: Date;
     fechaModificacion: Date;
     fechaEliminacion: Date;
+    hashPassword(): Promise<void>;
+    validatePassword(plainPassword: string): Promise<boolean>;
     rol: Rol;
     citas: Cita[];
     historialClinico: HistorialClinico[];

@@ -8,6 +8,8 @@ import { Cita } from 'src/citas/entities/cita.entity';
 import { HistorialClinico } from 'src/historial-clinico/entities/historial-clinico.entity';
 import { Rol } from 'src/roles/entities/rol.entity';
 import{
+  BeforeInsert,
+    BeforeUpdate,
     Column,
     CreateDateColumn,
     DeleteDateColumn,
@@ -18,19 +20,21 @@ import{
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 }from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 @Entity('pacientes')
 export class Paciente {
+  
     @PrimaryGeneratedColumn('identity')
     id: number;
 
-    @Column('varchar',{ length: 50,})
+    @Column('varchar',{ length: 50,  })
     nombre: string;
 
-    @Column('varchar',{ length: 50,})
+    @Column('varchar',{ length: 50, name: 'primer_apellido' })
     primer_apellido: string;
 
-    @Column('varchar',{ length: 50,})
+    @Column('varchar',{ length: 50, name: 'segundo_apellido' })
     segundo_apellido: string;
 
     @Column('varchar',{ length: 100,})
@@ -45,7 +49,7 @@ export class Paciente {
     @Column('varchar',{ length: 255,})
     direccion: string;
 
-    @Column('integer', { name: 'rol_id' })
+    @Column('integer', { name: 'rol_id', default: 1 })
     idRol: number;
 
     @CreateDateColumn({ name: 'fecha_creacion' })
@@ -56,6 +60,23 @@ export class Paciente {
 
     @DeleteDateColumn({ name: 'fecha_eliminacion' })
     fechaEliminacion: Date;
+    
+  //Bug correcion al actualizar, ahora se puede actualizar la contraseña
+  @BeforeInsert()
+  @BeforeUpdate()
+  async hashPassword() {
+    if (this.password) {
+      // Solo genera el hash si la contraseña está presente
+      const salt = await bcrypt.genSalt();
+      this.password = await bcrypt.hash(this.password, salt);
+    }
+  }
+
+   // Implementación de la validación de la contraseña
+   async validatePassword(plainPassword: string): Promise<boolean> {
+    return bcrypt.compare(plainPassword, this.password);
+  }
+
 
     @ManyToOne(() => Rol, rol => rol.pacientes)
     @JoinColumn({ name: 'rol_id', referencedColumnName: 'id' })
