@@ -4,9 +4,9 @@ import { UpdateOdontologosServicioDto } from './dto/update-odontologos_servicio.
 export declare class OdontologosServiciosController {
     private readonly odontologosServiciosService;
     constructor(odontologosServiciosService: OdontologosServiciosService);
-    create(createOdontologosServicioDto: CreateOdontologosServicioDto): string;
-    findAll(): string;
-    findOne(id: string): string;
-    update(id: string, updateOdontologosServicioDto: UpdateOdontologosServicioDto): string;
-    remove(id: string): string;
+    create(createOdontologosServicioDto: CreateOdontologosServicioDto): Promise<import("./entities/odontologos_servicio.entity").OdontologosServicio>;
+    findAll(): Promise<import("./entities/odontologos_servicio.entity").OdontologosServicio[]>;
+    findOne(id: string): Promise<import("./entities/odontologos_servicio.entity").OdontologosServicio>;
+    update(id: string, updateOdontologosServicioDto: UpdateOdontologosServicioDto): Promise<import("./entities/odontologos_servicio.entity").OdontologosServicio>;
+    remove(id: string): Promise<void>;
 }

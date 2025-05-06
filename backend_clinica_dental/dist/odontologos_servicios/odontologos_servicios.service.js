@@ -5,28 +5,65 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OdontologosServiciosService = void 0;
 const common_1 = require("@nestjs/common");
+const typeorm_1 = require("@nestjs/typeorm");
+const typeorm_2 = require("typeorm");
+const odontologos_servicio_entity_1 = require("./entities/odontologos_servicio.entity");
 let OdontologosServiciosService = class OdontologosServiciosService {
-    create(createOdontologosServicioDto) {
-        return 'This action adds a new odontologosServicio';
+    odontologosServicioRepository;
+    constructor(odontologosServicioRepository) {
+        this.odontologosServicioRepository = odontologosServicioRepository;
     }
-    findAll() {
-        return `This action returns all odontologosServicios`;
+    async create(createOdontologosServicioDto) {
+        const existe = await this.odontologosServicioRepository.findOne({
+            where: {
+                idOdontologo: createOdontologosServicioDto.idOdontologo,
+                idServicio: createOdontologosServicioDto.idServicio,
+            },
+        });
+        if (existe) {
+            throw new common_1.ConflictException('Este odontólogo ya tiene asignado este servicio.');
+        }
+        const nuevo = this.odontologosServicioRepository.create(createOdontologosServicioDto);
+        return await this.odontologosServicioRepository.save(nuevo);
     }
-    findOne(id) {
-        return `This action returns a #${id} odontologosServicio`;
+    async findAll() {
+        return await this.odontologosServicioRepository.find({
+            relations: ['odontologo', 'servicio'],
+        });
     }
-    update(id, updateOdontologosServicioDto) {
-        return `This action updates a #${id} odontologosServicio`;
+    async findOne(id) {
+        const odontologoServicio = await this.odontologosServicioRepository.findOne({
+            where: { id },
+            relations: ['odontologo', 'servicio'],
+        });
+        if (!odontologoServicio) {
+            throw new common_1.NotFoundException(`El registro con id ${id} no existe`);
+        }
+        return odontologoServicio;
     }
-    remove(id) {
-        return `This action removes a #${id} odontologosServicio`;
+    async update(id, updateOdontologosServicioDto) {
+        const odontologoServicio = await this.findOne(id);
+        Object.assign(odontologoServicio, updateOdontologosServicioDto);
+        return await this.odontologosServicioRepository.save(odontologoServicio);
+    }
+    async remove(id) {
+        const odontologoServicio = await this.findOne(id);
+        await this.odontologosServicioRepository.remove(odontologoServicio);
     }
 };
 exports.OdontologosServiciosService = OdontologosServiciosService;
 exports.OdontologosServiciosService = OdontologosServiciosService = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __param(0, (0, typeorm_1.InjectRepository)(odontologos_servicio_entity_1.OdontologosServicio)),
+    __metadata("design:paramtypes", [typeorm_2.Repository])
 ], OdontologosServiciosService);
 //# sourceMappingURL=odontologos_servicios.service.js.map
