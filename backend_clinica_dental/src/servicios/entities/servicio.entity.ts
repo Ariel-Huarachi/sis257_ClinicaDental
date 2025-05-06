@@ -38,7 +38,7 @@ export class Servicio {
     @UpdateDateColumn({ name: 'fecha_modificacion' })
     fechaModificacion: Date;
 
-    @DeleteDateColumn({ name: 'fecha_eliminacion' })
+    @DeleteDateColumn({ name: 'fecha_eliminacion', select: false})
     fechaEliminacion: Date;
 
     @OneToMany(() => OdontologosServicio, odontologosServicio => odontologosServicio.servicio)

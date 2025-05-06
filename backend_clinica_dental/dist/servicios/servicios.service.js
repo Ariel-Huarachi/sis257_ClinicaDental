@@ -5,28 +5,61 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ServiciosService = void 0;
 const common_1 = require("@nestjs/common");
+const typeorm_1 = require("@nestjs/typeorm");
+const typeorm_2 = require("typeorm");
+const servicio_entity_1 = require("./entities/servicio.entity");
 let ServiciosService = class ServiciosService {
-    create(createServicioDto) {
-        return 'This action adds a new servicio';
+    serviciosRepository;
+    constructor(serviciosRepository) {
+        this.serviciosRepository = serviciosRepository;
     }
-    findAll() {
-        return `This action returns all servicios`;
+    async create(createServicioDto) {
+        const existe = await this.serviciosRepository.findOne({
+            where: { nombre: createServicioDto.nombre },
+        });
+        if (existe) {
+            throw new common_1.ConflictException('El servicio con ese nombre ya existe');
+        }
+        const servicio = new servicio_entity_1.Servicio();
+        servicio.nombre = createServicioDto.nombre.trim();
+        servicio.descripcion = createServicioDto.descripcion.trim();
+        servicio.precio = createServicioDto.precio;
+        servicio.duracion = createServicioDto.duracion;
+        return this.serviciosRepository.save(servicio);
     }
-    findOne(id) {
-        return `This action returns a #${id} servicio`;
+    async findAll() {
+        return this.serviciosRepository.find();
     }
-    update(id, updateServicioDto) {
-        return `This action updates a #${id} servicio`;
+    async findOne(id) {
+        const servicio = await this.serviciosRepository.findOneBy({ id });
+        if (!servicio) {
+            throw new common_1.ConflictException('El servicio no existe');
+        }
+        return servicio;
     }
-    remove(id) {
-        return `This action removes a #${id} servicio`;
+    async update(id, updateServicioDto) {
+        const servicio = await this.findOne(id);
+        const servicioActualizado = Object.assign(servicio, updateServicioDto);
+        return this.serviciosRepository.save(servicioActualizado);
+    }
+    async remove(id) {
+        const servicio = await this.findOne(id);
+        return this.serviciosRepository.softRemove(servicio);
     }
 };
 exports.ServiciosService = ServiciosService;
 exports.ServiciosService = ServiciosService = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __param(0, (0, typeorm_1.InjectRepository)(servicio_entity_1.Servicio)),
+    __metadata("design:paramtypes", [typeorm_2.Repository])
 ], ServiciosService);
 //# sourceMappingURL=servicios.service.js.map

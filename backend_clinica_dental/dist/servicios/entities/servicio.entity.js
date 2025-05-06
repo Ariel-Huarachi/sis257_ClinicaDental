@@ -55,7 +55,7 @@ __decorate([
     __metadata("design:type", Date)
 ], Servicio.prototype, "fechaModificacion", void 0);
 __decorate([
-    (0, typeorm_1.DeleteDateColumn)({ name: 'fecha_eliminacion' }),
+    (0, typeorm_1.DeleteDateColumn)({ name: 'fecha_eliminacion', select: false }),
     __metadata("design:type", Date)
 ], Servicio.prototype, "fechaEliminacion", void 0);
 __decorate([
