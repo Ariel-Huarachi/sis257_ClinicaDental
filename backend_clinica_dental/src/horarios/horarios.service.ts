@@ -34,13 +34,13 @@ export class HorariosService {
     horario.fecha = fecha;
     horario.hora = hora;
     horario.estado = createHorarioDto.estado;
-   
+
 
     return this.horarioRepository.save(horario);
 
   }
     
-
+  
   async findAll(): Promise<Horario[]> {
     return this.horarioRepository.find({relations: ['odontologo'],});
   }
