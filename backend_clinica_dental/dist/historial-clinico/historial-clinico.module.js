@@ -12,12 +12,13 @@ const historial_clinico_service_1 = require("./historial-clinico.service");
 const historial_clinico_controller_1 = require("./historial-clinico.controller");
 const typeorm_1 = require("@nestjs/typeorm");
 const historial_clinico_entity_1 = require("./entities/historial-clinico.entity");
+const paciente_entity_1 = require("../pacientes/entities/paciente.entity");
 let HistorialClinicoModule = class HistorialClinicoModule {
 };
 exports.HistorialClinicoModule = HistorialClinicoModule;
 exports.HistorialClinicoModule = HistorialClinicoModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([historial_clinico_entity_1.HistorialClinico])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([historial_clinico_entity_1.HistorialClinico, paciente_entity_1.Paciente])],
         controllers: [historial_clinico_controller_1.HistorialClinicoController],
         providers: [historial_clinico_service_1.HistorialClinicoService],
     })
