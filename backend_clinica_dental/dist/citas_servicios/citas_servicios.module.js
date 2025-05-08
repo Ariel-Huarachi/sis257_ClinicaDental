@@ -12,12 +12,14 @@ const citas_servicios_service_1 = require("./citas_servicios.service");
 const citas_servicios_controller_1 = require("./citas_servicios.controller");
 const typeorm_1 = require("@nestjs/typeorm");
 const citas_servicio_entity_1 = require("./entities/citas_servicio.entity");
+const servicio_entity_1 = require("../servicios/entities/servicio.entity");
+const cita_entity_1 = require("../citas/entities/cita.entity");
 let CitasServiciosModule = class CitasServiciosModule {
 };
 exports.CitasServiciosModule = CitasServiciosModule;
 exports.CitasServiciosModule = CitasServiciosModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([citas_servicio_entity_1.CitasServicio])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([citas_servicio_entity_1.CitasServicio, servicio_entity_1.Servicio, cita_entity_1.Cita])],
         controllers: [citas_servicios_controller_1.CitasServiciosController],
         providers: [citas_servicios_service_1.CitasServiciosService],
     })
