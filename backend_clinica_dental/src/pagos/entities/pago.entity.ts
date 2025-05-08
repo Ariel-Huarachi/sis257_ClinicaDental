@@ -9,13 +9,11 @@ import{
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 }from 'typeorm';
-
 //pagos(id INT, cita_id INT, 
 // monto_pagado DECIMAL(10,2), 
 // metodo_pago ENUM('Efectivo', 'Tarjeta', 'QR'), 
 // fecha_pago DATETIME, fecha_creacion DATETIME,
 //  fecha_modificacion DATETIME)
-
 @Entity('Pagos')
 export class Pago {
     @PrimaryGeneratedColumn('identity')
