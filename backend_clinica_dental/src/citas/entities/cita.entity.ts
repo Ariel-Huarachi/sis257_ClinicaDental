@@ -16,6 +16,7 @@ import{
 //citas(id INT, estado ENUM('Programada', 'Completada', 'Cancelada'),
 //  cliente_id INT, odontologo_id INT, fecha_hora_inicio DATETIME, fecha_hora_fin DATETIME,
 //  fecha_creacion DATETIME, fecha_modificacion DATETIME, fecha_eliminacion DATETIME)
+//
 @Entity('citas')
 export class Cita {
     @PrimaryGeneratedColumn('identity')
