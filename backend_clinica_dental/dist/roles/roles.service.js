@@ -25,7 +25,7 @@ let RolesService = class RolesService {
     async create(createRoleDto) {
         const { nombre_rol } = createRoleDto;
         if (!nombre_rol ||
-            (nombre_rol !== 'odontologo' && nombre_rol !== 'paciente')) {
+            (nombre_rol !== 'paciente' && nombre_rol !== 'odontologo')) {
             throw new common_1.ConflictException('El campo rol es obligatorio y debe ser "odontologo" o "paciente"');
         }
         const rol = new rol_entity_1.Rol();

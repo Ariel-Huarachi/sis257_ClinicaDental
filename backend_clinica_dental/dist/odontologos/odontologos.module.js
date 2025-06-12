@@ -20,6 +20,7 @@ exports.OdontologosModule = OdontologosModule = __decorate([
         imports: [typeorm_1.TypeOrmModule.forFeature([odontologo_entity_1.Odontologo])],
         controllers: [odontologos_controller_1.OdontologosController],
         providers: [odontologos_service_1.OdontologosService],
+        exports: [odontologos_service_1.OdontologosService]
     })
 ], OdontologosModule);
 //# sourceMappingURL=odontologos.module.js.map

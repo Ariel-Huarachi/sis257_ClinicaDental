@@ -34,7 +34,7 @@ let PacientesService = class PacientesService {
         paciente.primer_apellido = createPacienteDto.primer_apellido.trim();
         paciente.segundo_apellido = createPacienteDto.segundo_apellido.trim();
         paciente.email = createPacienteDto.email.trim();
-        paciente.password = createPacienteDto.password.trim();
+        paciente.password = process.env.DEFAULT_PASSWORD ?? '';
         paciente.telefono = createPacienteDto.telefono.trim();
         paciente.direccion = createPacienteDto.direccion.trim();
         return this.pacienteRepository.save(paciente);

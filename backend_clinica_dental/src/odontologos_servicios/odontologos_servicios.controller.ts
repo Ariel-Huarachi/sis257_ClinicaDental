@@ -1,7 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { OdontologosServiciosService } from './odontologos_servicios.service';
 import { CreateOdontologosServicioDto } from './dto/create-odontologos_servicio.dto';
 import { UpdateOdontologosServicioDto } from './dto/update-odontologos_servicio.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+
+@ApiTags('OdontologosServicios')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 
 @Controller('odontologos-servicios')
 export class OdontologosServiciosController {

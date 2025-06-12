@@ -17,6 +17,8 @@ const common_1 = require("@nestjs/common");
 const pacientes_service_1 = require("./pacientes.service");
 const create_paciente_dto_1 = require("./dto/create-paciente.dto");
 const update_paciente_dto_1 = require("./dto/update-paciente.dto");
+const swagger_1 = require("@nestjs/swagger");
+const jwt_auth_guard_1 = require("../auth/guards/jwt-auth.guard");
 let PacientesController = class PacientesController {
     pacientesService;
     constructor(pacientesService) {
@@ -75,6 +77,9 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], PacientesController.prototype, "remove", null);
 exports.PacientesController = PacientesController = __decorate([
+    (0, swagger_1.ApiTags)('Pacientes'),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Controller)('pacientes'),
     __metadata("design:paramtypes", [pacientes_service_1.PacientesService])
 ], PacientesController);

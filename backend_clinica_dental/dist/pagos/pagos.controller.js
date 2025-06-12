@@ -17,6 +17,8 @@ const common_1 = require("@nestjs/common");
 const pagos_service_1 = require("./pagos.service");
 const create_pago_dto_1 = require("./dto/create-pago.dto");
 const update_pago_dto_1 = require("./dto/update-pago.dto");
+const swagger_1 = require("@nestjs/swagger");
+const jwt_auth_guard_1 = require("../auth/guards/jwt-auth.guard");
 let PagosController = class PagosController {
     pagosService;
     constructor(pagosService) {
@@ -75,6 +77,9 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], PagosController.prototype, "remove", null);
 exports.PagosController = PagosController = __decorate([
+    (0, swagger_1.ApiTags)('Pagos'),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Controller)('pagos'),
     __metadata("design:paramtypes", [pagos_service_1.PagosService])
 ], PagosController);

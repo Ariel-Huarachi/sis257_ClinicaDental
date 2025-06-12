@@ -22,6 +22,7 @@ const pagos_module_1 = require("./pagos/pagos.module");
 const servicios_module_1 = require("./servicios/servicios.module");
 const odontologos_servicios_module_1 = require("./odontologos_servicios/odontologos_servicios.module");
 const citas_servicios_module_1 = require("./citas_servicios/citas_servicios.module");
+const auth_module_1 = require("./auth/auth.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -50,6 +51,7 @@ exports.AppModule = AppModule = __decorate([
             servicios_module_1.ServiciosModule,
             odontologos_servicios_module_1.OdontologosServiciosModule,
             citas_servicios_module_1.CitasServiciosModule,
+            auth_module_1.AuthModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

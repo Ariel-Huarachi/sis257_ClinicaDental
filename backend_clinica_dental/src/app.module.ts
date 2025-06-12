@@ -13,6 +13,7 @@ import { PagosModule } from './pagos/pagos.module';
 import { ServiciosModule } from './servicios/servicios.module';
 import { OdontologosServiciosModule } from './odontologos_servicios/odontologos_servicios.module';
 import { CitasServiciosModule } from './citas_servicios/citas_servicios.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { CitasServiciosModule } from './citas_servicios/citas_servicios.module';
     ServiciosModule,
     OdontologosServiciosModule,
     CitasServiciosModule,
+    AuthModule,
     
 
   ],

@@ -15,6 +15,7 @@ async function bootstrap() {
         .setDescription('API Rest de la materia Desarrollo de Aplicación Int/Internet II')
         .setVersion('1.0')
         .addTag('Clinica-Dental')
+        .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'JWT', in: 'header' })
         .build();
     const documentFactory = () => swagger_1.SwaggerModule.createDocument(app, config);
     swagger_1.SwaggerModule.setup('apidoc', app, documentFactory);

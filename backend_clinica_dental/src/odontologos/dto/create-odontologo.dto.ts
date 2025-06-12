@@ -25,13 +25,13 @@ export class CreateOdontologoDto {
     @IsNotEmpty({ message: 'El campo primer_apellido es obligatorio' })
     @IsString({ message: 'El campo primer_apellido debe ser un string o cadena' })
     @MaxLength(50, {message: 'El campo primer_apellido debe tener un máximo de 50 caracteres',})
-    readonly primer_apellido: string;
+    readonly primerApellido: string;
 
     @ApiProperty()
     @IsNotEmpty({ message: 'El campo segundo_apellido es obligatorio' })
     @IsString({ message: 'El campo segundo_apellido debe ser un string o cadena' })
     @MaxLength(50, {message: 'El campo segundo_apellido debe tener un máximo de 50 caracteres',})
-    readonly segundo_apellido: string;  
+    readonly segundoApellido: string;  
 
     @ApiProperty()
     @IsNotEmpty({ message: 'El campo email es obligatorio' })
@@ -44,7 +44,7 @@ export class CreateOdontologoDto {
     @IsNotEmpty({ message: 'El campo password es obligatorio' })
     @IsString({ message: 'El campo password debe ser un string o cadena' })
     @MaxLength(250, {message: 'El campo password debe tener un máximo de 250 caracteres',})
-    readonly password: string;
+    readonly password?: string;
 
     @ApiProperty()
     @IsNotEmpty({ message: 'El campo telefono es obligatorio' })

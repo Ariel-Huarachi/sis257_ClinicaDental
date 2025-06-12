@@ -35,10 +35,10 @@ export class Odontologo {
     nombre: string;
 
     @Column('varchar',{ length: 50, name: 'primer_apellido'})
-    primer_apellido: string;
+    primerApellido: string;
 
     @Column('varchar',{ length: 50, name : 'segundo_apellido'})
-    segundo_apellido: string;
+    segundoApellido: string;
 
     @Column('varchar',{ length: 100,})
     email: string;

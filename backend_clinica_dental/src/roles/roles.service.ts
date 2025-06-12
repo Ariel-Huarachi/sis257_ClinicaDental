@@ -15,7 +15,7 @@ export class RolesService {
     const {nombre_rol} = createRoleDto;
 
     if (!nombre_rol ||
-      (nombre_rol !== 'odontologo' && nombre_rol !== 'paciente')
+      (nombre_rol !== 'paciente' && nombre_rol !== 'odontologo')
     ) {
       throw new ConflictException(
         'El campo rol es obligatorio y debe ser "odontologo" o "paciente"',

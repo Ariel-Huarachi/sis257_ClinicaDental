@@ -14,8 +14,8 @@ const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CreateOdontologoDto {
     nombre;
-    primer_apellido;
-    segundo_apellido;
+    primerApellido;
+    segundoApellido;
     email;
     password;
     telefono;
@@ -36,14 +36,14 @@ __decorate([
     (0, class_validator_1.IsString)({ message: 'El campo primer_apellido debe ser un string o cadena' }),
     (0, class_validator_1.MaxLength)(50, { message: 'El campo primer_apellido debe tener un máximo de 50 caracteres', }),
     __metadata("design:type", String)
-], CreateOdontologoDto.prototype, "primer_apellido", void 0);
+], CreateOdontologoDto.prototype, "primerApellido", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsNotEmpty)({ message: 'El campo segundo_apellido es obligatorio' }),
     (0, class_validator_1.IsString)({ message: 'El campo segundo_apellido debe ser un string o cadena' }),
     (0, class_validator_1.MaxLength)(50, { message: 'El campo segundo_apellido debe tener un máximo de 50 caracteres', }),
     __metadata("design:type", String)
-], CreateOdontologoDto.prototype, "segundo_apellido", void 0);
+], CreateOdontologoDto.prototype, "segundoApellido", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsNotEmpty)({ message: 'El campo email es obligatorio' }),

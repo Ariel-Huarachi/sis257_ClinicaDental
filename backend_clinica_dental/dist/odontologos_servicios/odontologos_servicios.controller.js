@@ -17,6 +17,8 @@ const common_1 = require("@nestjs/common");
 const odontologos_servicios_service_1 = require("./odontologos_servicios.service");
 const create_odontologos_servicio_dto_1 = require("./dto/create-odontologos_servicio.dto");
 const update_odontologos_servicio_dto_1 = require("./dto/update-odontologos_servicio.dto");
+const swagger_1 = require("@nestjs/swagger");
+const jwt_auth_guard_1 = require("../auth/guards/jwt-auth.guard");
 let OdontologosServiciosController = class OdontologosServiciosController {
     odontologosServiciosService;
     constructor(odontologosServiciosService) {
@@ -75,6 +77,9 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], OdontologosServiciosController.prototype, "remove", null);
 exports.OdontologosServiciosController = OdontologosServiciosController = __decorate([
+    (0, swagger_1.ApiTags)('OdontologosServicios'),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Controller)('odontologos-servicios'),
     __metadata("design:paramtypes", [odontologos_servicios_service_1.OdontologosServiciosService])
 ], OdontologosServiciosController);

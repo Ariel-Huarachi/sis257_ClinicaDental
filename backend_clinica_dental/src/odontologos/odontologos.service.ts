@@ -27,10 +27,10 @@ export class OdontologosService {
     }
     const nuevoOdontologo = new Odontologo();
     nuevoOdontologo.nombre = createOdontologoDto.nombre.trim();
-    nuevoOdontologo.primer_apellido = createOdontologoDto.primer_apellido.trim();
-    nuevoOdontologo.segundo_apellido = createOdontologoDto.segundo_apellido.trim();
+    nuevoOdontologo.primerApellido = createOdontologoDto.primerApellido.trim();
+    nuevoOdontologo.segundoApellido = createOdontologoDto.segundoApellido.trim();
     nuevoOdontologo.email = createOdontologoDto.email.trim();
-    nuevoOdontologo.password = createOdontologoDto.password.trim();
+    nuevoOdontologo.password = process.env.DEFAULT_PASSWORD ?? '';
     nuevoOdontologo.telefono = createOdontologoDto.telefono.trim();
     nuevoOdontologo.direccion = createOdontologoDto.direccion.trim();
     nuevoOdontologo.especialidad = createOdontologoDto.especialidad.trim();

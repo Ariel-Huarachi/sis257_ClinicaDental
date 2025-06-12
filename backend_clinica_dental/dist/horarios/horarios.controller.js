@@ -17,6 +17,8 @@ const common_1 = require("@nestjs/common");
 const horarios_service_1 = require("./horarios.service");
 const create_horario_dto_1 = require("./dto/create-horario.dto");
 const update_horario_dto_1 = require("./dto/update-horario.dto");
+const swagger_1 = require("@nestjs/swagger");
+const jwt_auth_guard_1 = require("../auth/guards/jwt-auth.guard");
 let HorariosController = class HorariosController {
     horariosService;
     constructor(horariosService) {
@@ -75,6 +77,9 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], HorariosController.prototype, "remove", null);
 exports.HorariosController = HorariosController = __decorate([
+    (0, swagger_1.ApiTags)('Horarios'),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Controller)('horarios'),
     __metadata("design:paramtypes", [horarios_service_1.HorariosService])
 ], HorariosController);

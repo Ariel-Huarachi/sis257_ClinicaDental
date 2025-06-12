@@ -17,6 +17,8 @@ const common_1 = require("@nestjs/common");
 const citas_service_1 = require("./citas.service");
 const create_cita_dto_1 = require("./dto/create-cita.dto");
 const update_cita_dto_1 = require("./dto/update-cita.dto");
+const swagger_1 = require("@nestjs/swagger");
+const jwt_auth_guard_1 = require("../auth/guards/jwt-auth.guard");
 let CitasController = class CitasController {
     citasService;
     constructor(citasService) {
@@ -75,6 +77,9 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], CitasController.prototype, "remove", null);
 exports.CitasController = CitasController = __decorate([
+    (0, swagger_1.ApiTags)('Citas'),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Controller)('citas'),
     __metadata("design:paramtypes", [citas_service_1.CitasService])
 ], CitasController);

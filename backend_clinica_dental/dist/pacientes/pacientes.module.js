@@ -20,6 +20,7 @@ exports.PacientesModule = PacientesModule = __decorate([
         imports: [typeorm_1.TypeOrmModule.forFeature([paciente_entity_1.Paciente])],
         controllers: [pacientes_controller_1.PacientesController],
         providers: [pacientes_service_1.PacientesService],
+        exports: [pacientes_service_1.PacientesService]
     })
 ], PacientesModule);
 //# sourceMappingURL=pacientes.module.js.map

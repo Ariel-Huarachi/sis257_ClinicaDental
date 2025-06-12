@@ -19,8 +19,8 @@ const bcrypt = require("bcrypt");
 let Odontologo = class Odontologo {
     id;
     nombre;
-    primer_apellido;
-    segundo_apellido;
+    primerApellido;
+    segundoApellido;
     email;
     password;
     telefono;
@@ -56,11 +56,11 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)('varchar', { length: 50, name: 'primer_apellido' }),
     __metadata("design:type", String)
-], Odontologo.prototype, "primer_apellido", void 0);
+], Odontologo.prototype, "primerApellido", void 0);
 __decorate([
     (0, typeorm_1.Column)('varchar', { length: 50, name: 'segundo_apellido' }),
     __metadata("design:type", String)
-], Odontologo.prototype, "segundo_apellido", void 0);
+], Odontologo.prototype, "segundoApellido", void 0);
 __decorate([
     (0, typeorm_1.Column)('varchar', { length: 100, }),
     __metadata("design:type", String)

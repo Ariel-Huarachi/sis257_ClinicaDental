@@ -17,6 +17,8 @@ const common_1 = require("@nestjs/common");
 const historial_clinico_service_1 = require("./historial-clinico.service");
 const create_historial_clinico_dto_1 = require("./dto/create-historial-clinico.dto");
 const update_historial_clinico_dto_1 = require("./dto/update-historial-clinico.dto");
+const swagger_1 = require("@nestjs/swagger");
+const jwt_auth_guard_1 = require("../auth/guards/jwt-auth.guard");
 let HistorialClinicoController = class HistorialClinicoController {
     historialClinicoService;
     constructor(historialClinicoService) {
@@ -75,6 +77,9 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], HistorialClinicoController.prototype, "remove", null);
 exports.HistorialClinicoController = HistorialClinicoController = __decorate([
+    (0, swagger_1.ApiTags)('Historial Clinico'),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Controller)('historial-clinico'),
     __metadata("design:paramtypes", [historial_clinico_service_1.HistorialClinicoService])
 ], HistorialClinicoController);

@@ -16,7 +16,8 @@ async function bootstrap() {
     .setTitle('API Rest - SIS257')
     .setDescription('API Rest de la materia Desarrollo de Aplicación Int/Internet II')
     .setVersion('1.0')
-    .addTag('Clinica-Dental')
+    .addTag('Clinica-Dental') //se añade una etiqueta a la documentación
+    .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'JWT', in: 'header' })
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('apidoc', app, documentFactory);
