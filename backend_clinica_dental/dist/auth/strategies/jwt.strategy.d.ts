@@ -3,7 +3,7 @@ import { JwtPayload } from "../interfaces/jwt-payload.interface";
 import { AuthService } from "../auth.service";
 import { Odontologo } from "src/odontologos/entities/odontologo.entity";
 import { Paciente } from "src/pacientes/entities/paciente.entity";
-declare const JwtStrategy_base: new (...args: [opt: import("passport-jwt").StrategyOptionsWithoutRequest] | [opt: import("passport-jwt").StrategyOptionsWithRequest]) => Strategy & {
+declare const JwtStrategy_base: new (...args: [opt: import("passport-jwt").StrategyOptionsWithRequest] | [opt: import("passport-jwt").StrategyOptionsWithoutRequest]) => Strategy & {
     validate(...args: any[]): unknown;
 };
 export declare class JwtStrategy extends JwtStrategy_base {

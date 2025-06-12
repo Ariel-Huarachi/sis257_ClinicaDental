@@ -25,13 +25,13 @@ export class CreatePacienteDto {
     @IsNotEmpty({ message: 'El primer apellido es obligatorio' })
     @IsString({ message: 'El primer apellido debe ser una cadena de texto' })
     @MaxLength(50, { message: 'El primer apellido no puede exceder los 50 caracteres' })
-    readonly primer_apellido: string;
+    readonly primerApellido: string;
 
     @ApiProperty()
     @IsNotEmpty({ message: 'El segundo apellido es obligatorio' })
     @IsString({ message: 'El segundo apellido debe ser una cadena de texto' })
     @MaxLength(50, { message: 'El segundo apellido no puede exceder los 50 caracteres' })
-    readonly segundo_apellido: string;
+    readonly segundoApellido: string;
 
     @ApiProperty()
     @IsNotEmpty({ message: 'El email es obligatorio' })

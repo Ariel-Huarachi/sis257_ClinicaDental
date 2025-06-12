@@ -1,31 +1,36 @@
-import './assets/main.css'
-
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-import PrimeVue from 'primevue/config'
-import Aura from '@primevue/themes/aura'
-
-import 'primeicons/primeicons.css'
-import 'primeflex/primeflex.min.css'
-
-import App from './App.vue'
-import router from './router'
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 
 
+// Importa PrimeVue
+import PrimeVue from 'primevue/config';
+import Aura from '@primevue/themes/aura';
+import 'primeicons/primeicons.css';
+import 'primeflex/primeflex.min.css';
+import ToastService from 'primevue/toastservice';
+import Toast from 'primevue/toast';
 
-const app = createApp(App)
-console.log('Base URL:', import.meta.env.VITE_BASE_URL_ENDPOINT)
-app.use(createPinia())
-app.use(router)
+import App from './App.vue';
+import router from './router';
+
+
+
+// Crea la aplicación de Vue
+const app = createApp(App);
+
+// Crea la instancia de Pinia (solo una vez)
+const pinia = createPinia();
+
+// Usa Pinia, Router y PrimeVue en la aplicación
+app.use(pinia);
+app.use(router);
+app.use(ToastService);
+app.component('Toast', Toast);
 app.use(PrimeVue, {
   theme: {
     preset: Aura,
-    options: {
-      prefix: 'p',
-      darkModeSelector: 'system',
-      cssLayer: false,
-    },
   },
-})
+});
 
-app.mount('#app')
+// Monta la aplicación en el DOM
+app.mount('#app');

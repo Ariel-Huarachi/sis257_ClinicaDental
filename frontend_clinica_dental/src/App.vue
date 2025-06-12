@@ -1,86 +1,65 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { onMounted, watch } from 'vue'
+import { RouterView, useRoute } from 'vue-router'
+
+import MainHeader from '@/components/MainHeader.vue'
+import MainFooter from '@/components/MainFooter.vue'
+
+import { useAuthStore } from '@/stores' // Importa la tienda de autenticación
+import '@/assets/js/plugins/bootstrap.min.js'
+import '@/assets/js/main.js'
+
+// Reimporta main.js en cada navegación
+const route = useRoute()
+const authStore = useAuthStore()
+
+onMounted(() => {
+  // Inicializa los scripts necesarios después de que el DOM esté renderizado
+  console.log('Todo ok - inicializando scripts locales')
+
+  // Verifica el token al cargar la aplicación
+  authStore.validateToken()
+
+  // Configura una validación periódica del token (cada 10 segundos)
+  setInterval(() => {
+    authStore.validateToken()
+  }, 10000)
+})
+
+// Escucha cambios de ruta para ejecutar main.js nuevamente
+watch(route, async newRoute => {
+  if (newRoute.path === '/') {
+    const { default: initializeMainScripts } = await import(
+      '@/assets/js/main.js'
+    )
+    initializeMainScripts()
+  }
+})
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/odontologos">Odontologos</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <MainHeader />
+  <div class="main-content">
+    <Toast />
+    <RouterView />
+  </div>
+  <MainFooter />
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+<style>
+/* Icon Font CSS */
+@import '@/assets/css/plugins/font-awesome.min.css';
+@import '@/assets/css/plugins/remixicon.css';
+@import '@/assets/css/plugins/flaticon.css';
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+/* Bootstrap CSS */
+@import '@/assets/css/plugins/bootstrap.min.css';
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
+/* Animaciones CSS */
+@import '@/assets/css/plugins/animate.min.css';
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
+/* Preloader (local si no hay CDN disponible) */
+@import '@/assets/css/plugins/preloader.css';
+/* Main Style CSS */
+@import '@/assets/css/style.css';
 </style>

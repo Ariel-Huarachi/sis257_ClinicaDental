@@ -14,8 +14,8 @@ const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CreatePacienteDto {
     nombre;
-    primer_apellido;
-    segundo_apellido;
+    primerApellido;
+    segundoApellido;
     email;
     password;
     telefono;
@@ -35,14 +35,14 @@ __decorate([
     (0, class_validator_1.IsString)({ message: 'El primer apellido debe ser una cadena de texto' }),
     (0, class_validator_1.MaxLength)(50, { message: 'El primer apellido no puede exceder los 50 caracteres' }),
     __metadata("design:type", String)
-], CreatePacienteDto.prototype, "primer_apellido", void 0);
+], CreatePacienteDto.prototype, "primerApellido", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsNotEmpty)({ message: 'El segundo apellido es obligatorio' }),
     (0, class_validator_1.IsString)({ message: 'El segundo apellido debe ser una cadena de texto' }),
     (0, class_validator_1.MaxLength)(50, { message: 'El segundo apellido no puede exceder los 50 caracteres' }),
     __metadata("design:type", String)
-], CreatePacienteDto.prototype, "segundo_apellido", void 0);
+], CreatePacienteDto.prototype, "segundoApellido", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsNotEmpty)({ message: 'El email es obligatorio' }),

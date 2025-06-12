@@ -24,8 +24,8 @@ export class PacientesService {
     }
     const paciente = new Paciente();
     paciente.nombre = createPacienteDto.nombre.trim();
-    paciente.primer_apellido = createPacienteDto.primer_apellido.trim();
-    paciente.segundo_apellido = createPacienteDto.segundo_apellido.trim();
+    paciente.primerApellido = createPacienteDto.primerApellido.trim();
+    paciente.segundoApellido = createPacienteDto.segundoApellido.trim();
     paciente.email = createPacienteDto.email.trim();
     paciente.password = process.env.DEFAULT_PASSWORD ?? '';
     paciente.telefono = createPacienteDto.telefono.trim();

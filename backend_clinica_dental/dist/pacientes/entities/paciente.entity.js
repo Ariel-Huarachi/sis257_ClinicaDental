@@ -18,8 +18,8 @@ const bcrypt = require("bcrypt");
 let Paciente = class Paciente {
     id;
     nombre;
-    primer_apellido;
-    segundo_apellido;
+    primerApellido;
+    segundoApellido;
     email;
     password;
     telefono;
@@ -53,11 +53,11 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)('varchar', { length: 50, name: 'primer_apellido' }),
     __metadata("design:type", String)
-], Paciente.prototype, "primer_apellido", void 0);
+], Paciente.prototype, "primerApellido", void 0);
 __decorate([
     (0, typeorm_1.Column)('varchar', { length: 50, name: 'segundo_apellido' }),
     __metadata("design:type", String)
-], Paciente.prototype, "segundo_apellido", void 0);
+], Paciente.prototype, "segundoApellido", void 0);
 __decorate([
     (0, typeorm_1.Column)('varchar', { length: 100, }),
     __metadata("design:type", String)

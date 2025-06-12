@@ -4,8 +4,8 @@ import { Rol } from 'src/roles/entities/rol.entity';
 export declare class Paciente {
     id: number;
     nombre: string;
-    primer_apellido: string;
-    segundo_apellido: string;
+    primerApellido: string;
+    segundoApellido: string;
     email: string;
     password: string;
     telefono: string;
